@@ -17,10 +17,14 @@ const Sidebar = React.forwardRef(({ isOpen, onClose, activeTab, setActiveTab, me
       onClose={onClose}
       sx={{ 
         '& .MuiDrawer-paper': { 
-          width: 240, 
-          boxSizing: "border-box", 
-          backgroundColor: "#481474",
-          color: "#ffffff" 
+            width: 240, 
+            boxSizing: "border-box", 
+            backgroundColor: "#481474",
+            color: "#ffffff",
+            backgroundImage: `url('/purplebg.png')`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
         } 
       }}
     >

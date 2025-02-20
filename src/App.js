@@ -8,12 +8,20 @@ import {
   Box, 
   CssBaseline, 
   Typography, 
-  IconButton 
+  IconButton,
+  ThemeProvider,
+  createTheme 
 } from "@mui/material";
 
 // Import components
 import HomeContent from './components/HomeContent';
 import Sidebar from './components/Sidebar';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Poppins, sans-serif',
+  },
+});
 
 // Menu items configuration
 const menuItems = [
@@ -27,11 +35,17 @@ const menuItems = [
 ];
 
 function App() {
+  
   const [activeTab, setActiveTab] = useState("Home");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <ThemeProvider theme={theme}>
+    <Box sx={{
+        display: "flex",
+          backgroundColor: '#f8f7fa',  // Choose any of the colors above
+          minHeight: '100vh'  // This ensures the background covers the full height
+     }}>
       <CssBaseline />
       
       {/* Menu Toggle Button */}
@@ -76,7 +90,9 @@ function App() {
         )}
       </Box>
     </Box>
+    </ThemeProvider>
   );
 }
+
 
 export default App;
