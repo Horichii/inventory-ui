@@ -53,7 +53,7 @@ const Sidebar = React.forwardRef(({ isOpen, onClose, activeTab, setActiveTab, me
         </Box>
       </Box>
 
-      {/* Navigation Menu */}
+      {/* Nav Menu */}
       <List>
         {menuItems.map(({ text, icon, key }) => (
           <ListItem 
@@ -77,7 +77,7 @@ const Sidebar = React.forwardRef(({ isOpen, onClose, activeTab, setActiveTab, me
   );
 });
 
-// Add display name for debugging purposes
+// display name for debug
 Sidebar.displayName = 'Sidebar';
 
 export default Sidebar;
