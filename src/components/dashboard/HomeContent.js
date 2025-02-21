@@ -1,3 +1,6 @@
+import { Typography, Container, Paper } from "@mui/material";  // Add imports
+import { COLORS } from '../../constants/theme';  // Add COLORS import
+
 const HomeContent = () => {
   return (
     <Container maxWidth="xl">
@@ -7,14 +10,14 @@ const HomeContent = () => {
           p: 3, 
           mb: 3, 
           backgroundColor: '#f8f9fa',
-          borderLeft: `4px solid ${COLORS.primary}`,
+          borderLeft: `4px solid ${COLORS.accent}`,
           backgroundImage: "url('/purplebg.png')",
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center'
         }}
       >
-        <Typography variant="h5" gutterBottom sx={{ color: COLORS.white, fontWeight: 'medium' }}>
+        <Typography variant="h5" gutterBottom sx={{ color: COLORS.accent, fontWeight: 'medium' }}>
           Welcome to BISU Inventory Management System
         </Typography>
         <Typography variant="body1" sx={{ color: COLORS.white }}>
@@ -24,3 +27,5 @@ const HomeContent = () => {
     </Container>
   );
 };
+
+export default HomeContent;  // Add default export
