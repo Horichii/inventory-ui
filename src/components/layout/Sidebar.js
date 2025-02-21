@@ -1,34 +1,37 @@
-import React from 'react';
 import { 
-    Drawer, 
-    List, 
-    ListItem, 
-    ListItemIcon, 
-    ListItemText, 
-    Box, 
-    Typography 
+  Drawer, 
+  Box, 
+  Typography, 
+  List, 
+  ListItem, 
+  ListItemIcon, 
+  ListItemText 
 } from "@mui/material";
+import { COLORS } from '../../constants/theme';
 
-const Sidebar = React.forwardRef(({ isOpen, onClose, activeTab, setActiveTab, menuItems }, ref) => {
+const Sidebar = ({ isOpen, onClose, activeTab, setActiveTab, menuItems }) => {
   return (
     <Drawer 
       variant="temporary"
+      anchor="right"  // make it open from right
       open={isOpen}
       onClose={onClose}
       sx={{ 
+        zIndex: 1400,
         '& .MuiDrawer-paper': { 
-            width: 240, 
-            boxSizing: "border-box", 
-            backgroundColor: "#481474",
-            color: "#ffffff",
-            backgroundImage: `url('/purplebg.png')`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center'
+          width: 280, 
+          boxSizing: "border-box", 
+          backgroundColor: COLORS.primary,
+          color: COLORS.white,
+          backgroundImage: "url('/purplebg.png')",
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          right: 0,  // to make sure sidebar is on right side
+          left: 'auto',  // override default left position
         } 
       }}
     >
-      {/* Header Section */}
       <Box sx={{ p: 2, mb: 2 }}>
         <Box sx={{ 
           display: "flex", 
@@ -38,14 +41,11 @@ const Sidebar = React.forwardRef(({ isOpen, onClose, activeTab, setActiveTab, me
           <img 
             src="/LogoBISU.png" 
             alt="BISU Logo" 
-            style={{ 
-              width: '45px', 
-              height: '45px',
-            }} 
+            style={{ width: '45px', height: '45px' }} 
           />
           <Typography 
             sx={{ 
-              color: "#ffcc04",
+              color: COLORS.accent,
               fontSize: '1rem',
               fontWeight: 'bold',
               lineHeight: 1.3,
@@ -57,7 +57,6 @@ const Sidebar = React.forwardRef(({ isOpen, onClose, activeTab, setActiveTab, me
         </Box>
       </Box>
 
-      {/* Nav Menu */}
       <List>
         {menuItems.map(({ text, icon, key }) => (
           <ListItem 
@@ -68,20 +67,17 @@ const Sidebar = React.forwardRef(({ isOpen, onClose, activeTab, setActiveTab, me
               onClose();
             }}
             sx={{ 
-              '&:hover': { backgroundColor: "#351058" },
-              backgroundColor: activeTab === text ? "#351058" : "transparent"
+              '&:hover': { backgroundColor: COLORS.secondary },
+              backgroundColor: activeTab === text ? COLORS.secondary : "transparent"
             }}
           >
-            <ListItemIcon sx={{ color: "#ffcc04" }}>{icon}</ListItemIcon>
-            <ListItemText primary={text} sx={{ color: "#ffffff" }} />
+            <ListItemIcon sx={{ color: COLORS.accent }}>{icon}</ListItemIcon>
+            <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
     </Drawer>
   );
-});
-
-// display name for debug
-Sidebar.displayName = 'Sidebar';
+};
 
 export default Sidebar;
