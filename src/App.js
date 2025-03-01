@@ -1,7 +1,8 @@
+// src/App.js
 import { useState } from "react";
 import { 
   Person, 
-  Settings
+  Settings as SettingsIcon
 } from "@mui/icons-material";
 import { 
   Box, 
@@ -11,15 +12,19 @@ import {
   createTheme
 } from "@mui/material";
 
-import HomeContent from './components/dashboard/HomeContent';
+// Import pages
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
+
 import Sidebar from './components/layout/Sidebar';
 import Navbar from './components/layout/Navbar';
 import { COLORS } from './constants/theme';
 
-// Menu items configuration (now only Profile and Settings)
+// Define menuItems here (or import from constants)
 const menuItems = [
   { text: "Profile", icon: <Person />, key: "Profile" },
-  { text: "Settings", icon: <Settings />, key: "Settings" },
+  { text: "Settings", icon: <SettingsIcon />, key: "Settings" }
 ];
 
 // Create theme
@@ -32,6 +37,29 @@ const theme = createTheme({
 function App() {
   const [activeTab, setActiveTab] = useState("Home");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  // Function to render the correct page based on activeTab
+  const renderPage = () => {
+    switch(activeTab) {
+      case "Home":
+        return <Home />;
+      case "Profile":
+        return <Profile />;
+      case "Settings":
+        return <Settings />;
+      default:
+        return (
+          <>
+            <Typography variant="h4" fontWeight="bold" color={COLORS.primary}>
+              {activeTab}
+            </Typography>
+            <Typography variant="body1" color="textSecondary" sx={{ mt: 1 }}>
+              Content for {activeTab} section will go here
+            </Typography>
+          </>
+        );
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -64,15 +92,7 @@ function App() {
             mt: '64px'
           }}
         >
-          {activeTab === "Home" ? (
-            <HomeContent />   // should show Welcome message
-          ) : (
-          <>
-            <Typography variant="h4" fontWeight="bold" color={COLORS.primary}>
-              {activeTab}
-            </Typography>
-          </>
-        )}
+          {renderPage()}
         </Box>
       </Box>
     </ThemeProvider>

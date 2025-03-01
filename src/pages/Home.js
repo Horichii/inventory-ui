@@ -1,11 +1,11 @@
 // src/pages/Home.js
 import { Container } from "@mui/material";
-import WelcomeSection from '../components/dashboard/WelcomeSection';
+import HomeContent from '../components/dashboard/HomeContent';
 
 const Home = () => {
   return (
     <Container maxWidth="xl">
-      <WelcomeSection />
+      <HomeContent />
       {/* Add more sections here as needed */}
     </Container>
   );
